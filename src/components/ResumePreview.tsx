@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { formatDate } from "date-fns";
 import { Badge } from "./ui/badge";
+import { BorderStyles } from "@/app/(main)/editor/BorderStyleButton";
 
 interface ResumePreviewProps {
   resumeData: ResumeValues;
@@ -48,8 +49,18 @@ interface ResumeSectionProps {
 }
 
 function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
-  const { photo, firstName, lastName, jobTitle, city, country, phone, email } =
-    resumeData;
+  const {
+    photo,
+    firstName,
+    lastName,
+    jobTitle,
+    city,
+    country,
+    phone,
+    email,
+    colorHex,
+    borderStyle,
+  } = resumeData;
   const [photoSrc, setPhotoSrc] = useState(photo instanceof File ? "" : photo);
 
   useEffect(() => {
@@ -64,6 +75,14 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
     <div className="flex items-center gap-6">
       {photoSrc && (
         <Image
+          style={{
+            borderRadius:
+              borderStyle === BorderStyles.SQUARE
+                ? "0px"
+                : borderStyle === BorderStyles.CIRCLE
+                  ? "9999px"
+                  : "10%",
+          }}
           src={photoSrc}
           width={100}
           height={100}
@@ -74,10 +93,12 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
 
       <div className="space-y-2.5">
         <div className="space-y-1">
-          <p className="text-3xl font-bold">
+          <p className="text-3xl font-bold" style={{ color: colorHex }}>
             {firstName} {lastName}
           </p>
-          <p className="font-medium">{jobTitle}</p>
+          <p className="font-medium" style={{ color: colorHex }}>
+            {jobTitle}
+          </p>
         </div>
         <p className="text-xs text-gray-500">
           {city}
@@ -92,14 +113,16 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
 }
 
 function SummarySection({ resumeData }: ResumeSectionProps) {
-  const { summary } = resumeData;
+  const { summary, colorHex } = resumeData;
   if (!summary) return null;
   return (
     <>
-      <hr className="border-2" />
+      <hr className="border-2" style={{ borderColor: colorHex }} />
       {/* break-inside-avoid: prevents the div content from being seperated */}
       <div className="break-inside-avoid space-y-3">
-        <p className="text-lg font-semibold">Professional profile</p>
+        <p className="text-lg font-semibold" style={{ color: colorHex }}>
+          Professional profile
+        </p>
         <div className="whitespace-pre-line text-sm">{summary}</div>
       </div>
     </>
@@ -107,7 +130,7 @@ function SummarySection({ resumeData }: ResumeSectionProps) {
 }
 
 function WorkExperienceSection({ resumeData }: ResumeSectionProps) {
-  const { workExperiences } = resumeData;
+  const { workExperiences, colorHex } = resumeData;
 
   const workExperiencesNotEmpty = workExperiences?.filter(
     (exp) => Object.values(exp).filter(Boolean).length > 0,
@@ -116,12 +139,17 @@ function WorkExperienceSection({ resumeData }: ResumeSectionProps) {
   if (!workExperiencesNotEmpty?.length) return null;
   return (
     <>
-      <hr className="border-2" />
+      <hr className="border-2" style={{ color: colorHex }} />
       <div className="space-y-3">
-        <p className="text-lg font-semibold">Work experience</p>
+        <p className="text-lg font-semibold" style={{ color: colorHex }}>
+          Work experience
+        </p>
         {workExperiencesNotEmpty.map((exp, index) => (
           <div key={index} className="break-inside-avoid space-y-1">
-            <div className="flex items-center justify-between text-sm font-semibold">
+            <div
+              style={{ color: colorHex }}
+              className="flex items-center justify-between text-sm font-semibold"
+            >
               <span>{exp.position}</span>
               {exp.startDate && (
                 <span>
@@ -140,7 +168,7 @@ function WorkExperienceSection({ resumeData }: ResumeSectionProps) {
 }
 
 function EducationSection({ resumeData }: ResumeSectionProps) {
-  const { educations } = resumeData;
+  const { educations, colorHex } = resumeData;
 
   const educationsNotEmpty = educations?.filter(
     (edu) => Object.values(edu).filter(Boolean).length > 0,
@@ -149,12 +177,17 @@ function EducationSection({ resumeData }: ResumeSectionProps) {
   if (!educationsNotEmpty?.length) return null;
   return (
     <>
-      <hr className="border-2" />
+      <hr className="border-2" style={{ borderColor: colorHex }} />
       <div className="space-y-3">
-        <p className="text-lg font-semibold">Education</p>
+        <p className="text-lg font-semibold" style={{ color: colorHex }}>
+          Education
+        </p>
         {educationsNotEmpty.map((edu, index) => (
           <div key={index} className="break-inside-avoid space-y-1">
-            <div className="flex items-center justify-between text-sm font-semibold">
+            <div
+              className="flex items-center justify-between text-sm font-semibold"
+              style={{ color: colorHex }}
+            >
               <span>{edu.degree}</span>
               {edu.startDate && (
                 <span>
@@ -172,17 +205,28 @@ function EducationSection({ resumeData }: ResumeSectionProps) {
 }
 
 function SkillSection({ resumeData }: ResumeSectionProps) {
-  const { skills } = resumeData;
+  const { skills, colorHex, borderStyle } = resumeData;
 
   if (!skills?.length) return null;
   return (
     <>
-      <hr className="border-2" />
+      <hr className="border-2" style={{ borderColor: colorHex }} />
       <div className="break-inside-avoid space-y-3">
-        <p className="text-lg font-semibold">Skills</p>
+        <p className="text-lg font-semibold" style={{ color: colorHex }}>
+          Skills
+        </p>
         <div className="flex break-inside-avoid flex-wrap gap-2">
           {skills.map((skill, index) => (
             <Badge
+              style={{
+                backgroundColor: colorHex,
+                borderRadius:
+                  borderStyle === BorderStyles.SQUARE
+                    ? "0px"
+                    : borderStyle === BorderStyles.CIRCLE
+                      ? "9999px"
+                      : "8px",
+              }}
               key={index}
               className="rounded-md bg-black text-white hover:bg-black"
             >
