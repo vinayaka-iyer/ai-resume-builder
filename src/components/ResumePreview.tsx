@@ -2,17 +2,19 @@ import useDimensions from "@/hooks/useDimensions";
 import { cn } from "@/lib/utils";
 import { ResumeValues } from "@/lib/validation";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { formatDate } from "date-fns";
 import { Badge } from "./ui/badge";
 import { BorderStyles } from "@/app/(main)/editor/BorderStyleButton";
 
 interface ResumePreviewProps {
+  contentRef?: React.Ref<HTMLDivElement>;
   resumeData: ResumeValues;
   className?: string;
 }
 
 export default function ResumePreview({
+  contentRef,
   resumeData,
   className,
 }: ResumePreviewProps) {
@@ -29,6 +31,8 @@ export default function ResumePreview({
       ref={containerRef}
     >
       <div
+        ref={contentRef}
+        id="resumePreviewContent"
         className={cn("space-y-6 p-6", !width && "invisible")}
         style={{
           zoom: (1 / 794) * width, // 210 mm = 794 px
