@@ -22,7 +22,7 @@ export default function GeneralInfoForm({
     resolver: zodResolver(generalInfoSchema),
     defaultValues: {
       title: resumeData.title || "",
-      description: resumeData.description || "",
+      desc: resumeData.desc || "",
     },
   });
 
@@ -60,7 +60,7 @@ export default function GeneralInfoForm({
           />
           <FormField
             control={form.control}
-            name="description"
+            name="desc"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Description</FormLabel>
