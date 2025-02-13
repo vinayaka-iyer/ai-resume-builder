@@ -34,7 +34,6 @@ export default function ResumePreview({
           zoom: (1 / 794) * width, // 210 mm = 794 px
         }}
       >
-        <pre>{JSON.stringify(resumeData, null, 2)}</pre>
         <PersonalInfoHeader resumeData={resumeData} />
         <SummarySection resumeData={resumeData} />
         <WorkExperienceSection resumeData={resumeData} />
