@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 AI-Powered Resume Builder
 
-## Getting Started
+![Project Preview](https://snipboard.io/9goc0j.jpg)
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js 15** – Modern React framework with app router
+- **Stripe Checkout** – Subscription tiers & customer portal
+- **AI Auto-Fill** – ChatGPT API for intelligent content generation
+- **Multi-Step Forms** – Built with React Hook Form
+- **Dynamic Forms** – Powered by `useFieldArray`
+- **Drag & Drop Reordering** – Implemented with `dnd-kit`
+- **Autosave** – Changes saved automatically after debounce
+- **Resume Design Customizations** – User-controlled styling
+- **Image Upload** – Powered by Vercel Blob
+- **Postgres DB + Prisma ORM** – Scalable & type-safe database
+- **Authentication with Clerk v6** – Secure user management
+- **Server Actions & API Route Handlers** – Optimized backend logic
+- **Validation with Zod** – Type-safe input validation (frontend & backend)
+- **Tailwind CSS + Shadcn UI** – Modern & responsive UI components
+- **Mobile Responsive** – Seamless experience across devices
+- **Dark Mode Support** – Light, dark, and system themes
+- **Print or Save as PDF** – Export resumes with `react-to-print`
+- **URL State Management** – Persistent state via search params
+- **Global Dialog with Zustand** – Centralized modal system
+- **Caching & Context Providers** – Optimized data flow
+- **Vercel Deployment** – Seamless cloud hosting
+- **VS Code Setup** – Prettier, extensions, and best practices
+
+## 📜 Getting Started
+
+### 1️⃣ Clone the Repository
+
+```sh
+git clone https://github.com/vinayaka-iyer/ai-resume-builder.git
+cd ai-resume-builder
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2️⃣ Install Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+yarn install  # or npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3️⃣ Set Up Environment Variables
 
-## Learn More
+Create a `.env.local` file and configure the following:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+DATABASE_URL=your_postgres_url
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_key
+CLERK_SECRET_KEY=your_clerk_secret
+NEXT_PUBLIC_STRIPE_KEY=your_stripe_key
+STRIPE_SECRET_KEY=your_stripe_secret
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4️⃣ Run the Development Server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```sh
+npm run dev
+```
 
-## Deploy on Vercel
+### 5️⃣ Live Deployment on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```sh
+https://ai-resume-builder-roan-tau.vercel.app/
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📚 Tech Stack
+
+- **Frontend:** Next.js 15, Tailwind CSS, Shadcn UI, Zustand, React Hook Form
+- **Backend:** Next.js API Routes, Server Actions, Prisma ORM
+- **Database:** PostgreSQL (Vercel Postgres)
+- **Authentication:** Clerk v6
+- **Payments:** Stripe Checkout & Subscriptions
+- **AI Integration:** ChatGPT API
+- **Storage:** Vercel Blob (for image uploads)
+- **Deployment:** Vercel
